@@ -1,0 +1,23 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(function() {
+  google.script.run.withSuccessHandler(showListItems).makeUniqueList('name');
+});
+
+function showListItems(listItems) {
+  var list = $('#clientObjLists');
+  list.empty();
+  list.append('<tr><th>List</th></tr>');
+  
+    for (var i = 0; i < listItems.length; i++){ 
+      
+      list.append('<tr><td>' + listItems[i] + '</td></tr>'); 
+   }
+ }
+ 
+ function showError(error) {
+    Logger.log(error);
+    SpreadsheetApp.getUi().alert('An error has occurred, please try again. '+error);
+  }
+
+</script>
